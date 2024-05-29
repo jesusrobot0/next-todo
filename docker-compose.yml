@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  next-todo-db:
+    image: postgres:15.3
+    container_name: next-todo-db
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=tjefwxikdemjannhtdnegebdinmhmg
+      - POSTGRES_PASSWORD=phRWHzQGZDkbXYJ3i3hZBnSyXYobivQWKq2Yz4ZCRBXFfmmapFG6Ta9e8Au9
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
