@@ -38,7 +38,9 @@ Follow these steps to run the project in your local environment:
     pnpm dlx prisma generate
     ```
 
-7. **Access the Application:** Open your browser and visit [http://localhost:3000](http://localhost:3000).
+7. Run the [/api/seed](http://localhost:3000/api/seed) endpoint to populate the local database.
+
+8. **Access the Application:** Open your browser and visit [http://localhost:3000](http://localhost:3000).
 
 Done! You should now see the application running in your local environment.
 
