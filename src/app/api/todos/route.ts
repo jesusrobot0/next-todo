@@ -3,8 +3,8 @@ import prisma from "@/lib/prisma";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
-  const skip = Number(searchParams.get("skip")) ?? 0;
-  const take = Number(searchParams.get("take")) ?? 5;
+  const skip = Number(searchParams.get("skip") ?? 0);
+  const take = Number(searchParams.get("take") ?? 5);
 
   if (isNaN(skip)) {
     return NextResponse.json(
@@ -21,5 +21,5 @@ export async function GET(request: NextRequest) {
   }
 
   const todos = await prisma.todo.findMany({ skip, take });
-  return NextResponse.json(todos);
+  return NextResponse.json({ todos, here: "paginaction" });
 }
