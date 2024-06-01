@@ -1,11 +1,13 @@
+import { Navbar } from "../components";
+
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <h1>Dashboard Layout</h1>
+    <div className="w-[92%] max-w-[1200px] mx-auto">
+      <Navbar />
       {children}
     </div>
   );
