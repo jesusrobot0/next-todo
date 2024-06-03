@@ -16,12 +16,12 @@ interface Args {
 
 export function TodosGrid({ todos = [] }: Props) {
   const router = useRouter();
+
   const toggleTodo = async ({ id, complete }: Args) => {
     const updatedTodo = await updateTodo({ id, complete });
     router.refresh();
-
-    console.log(updatedTodo);
   };
+
   return (
     <section className="flex flex-col gap-4">
       {todos.map((todo) => (
