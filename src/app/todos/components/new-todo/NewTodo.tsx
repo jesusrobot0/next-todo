@@ -22,7 +22,7 @@ export function NewTodo() {
   return (
     <div className="mb-8 flex justify-between items-center">
       <button
-        className="flex items-center justify-center gap-2 h-[45px] px-4 text-white rounded bg-[#78c4f4]"
+        className="flex items-center justify-center gap-2 h-[45px] px-6 text-white rounded-2xl bg-[dodgerblue]"
         onClick={togglePopup}
       >
         <CirclePlus size={18} />
@@ -30,11 +30,11 @@ export function NewTodo() {
       </button>
 
       <button
-        className="flex items-center justify-center gap-2 h-[45px] px-4 text-white rounded bg-red-400"
+        className="flex items-center justify-center gap-2 h-[45px] px-6 text-white rounded-2xl bg-[tomato]"
         onClick={handleDelete}
       >
         <Trash size={18} />
-        Delete all completed
+        Delete completed
       </button>
 
       <PopUp isVisible={isVisible} onTogglePopup={togglePopup} />
