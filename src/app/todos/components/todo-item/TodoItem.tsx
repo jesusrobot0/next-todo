@@ -21,14 +21,16 @@ export function TodoItem({ todo, toggleTodo }: Props) {
   return (
     <article
       className={clsx(
-        "flex gap-4 p-6 border-2 border-dashed border-[#ccc] rounded-lg bg-white",
-        complete && "border-[#96d2b0]"
+        "flex gap-4 p-6 border-2 border-dashed rounded-lg bg-white",
+        complete ? "border-[#96d2b0]" : "border-[#ccc]"
       )}
     >
       <button
         className={clsx(
-          "flex justify-center items-center border min-w-[30px] min-h-[30px] w-[30px] h-[30px] border-[#ccc] rounded-lg ",
-          complete && "bg-[#2da562] border-[#96d2b0] border-[3px]"
+          "flex justify-center items-center border min-w-[30px] min-h-[30px] w-[30px] h-[30px] rounded-lg ",
+          complete
+            ? "border-[#96d2b0] border-[3px] bg-[#2da562]"
+            : "border-[#ccc]"
         )}
         onClick={() => {
           toggleTodo({ id, complete: !complete });
