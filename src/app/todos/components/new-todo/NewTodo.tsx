@@ -1,14 +1,22 @@
 "use client";
 
-import { CirclePlus, Trash } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { CirclePlus, Trash } from "lucide-react";
 import { PopUp } from "../pop-up/PopUp";
+import { deleteCompletedTodos } from "../../helpers";
 
 export function NewTodo() {
   const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
 
   const togglePopup = () => {
     setIsVisible(!isVisible);
+  };
+
+  const handleDelete = async () => {
+    await deleteCompletedTodos();
+    router.refresh();
   };
 
   return (
@@ -21,7 +29,10 @@ export function NewTodo() {
         Add New Todo
       </button>
 
-      <button className="flex items-center justify-center gap-2 h-[45px] px-4 text-white rounded bg-red-400">
+      <button
+        className="flex items-center justify-center gap-2 h-[45px] px-4 text-white rounded bg-red-400"
+        onClick={handleDelete}
+      >
         <Trash size={18} />
         Delete all completed
       </button>
