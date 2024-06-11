@@ -4,12 +4,20 @@ import prisma from "@/lib/prisma";
 import { Todo } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
-interface Args {
+interface ToggleTodoArgs {
   id: string;
   complete: boolean;
 }
 
-export async function toggleTodo({ id, complete }: Args): Promise<Todo> {
+interface CreateTodoArgs {
+  title: string;
+  description?: string;
+}
+
+export async function toggleTodo({
+  id,
+  complete,
+}: ToggleTodoArgs): Promise<Todo> {
   const todo = await prisma.todo.findFirst({ where: { id } });
 
   if (!todo) {
@@ -23,4 +31,21 @@ export async function toggleTodo({ id, complete }: Args): Promise<Todo> {
 
   revalidatePath("/dashboard/actions");
   return updatedTodo;
+}
+
+export async function createTodo({ title, description }: CreateTodoArgs) {
+  try {
+    const todo = await prisma.todo.create({
+      data: {
+        title,
+        description: description!,
+      },
+    });
+
+    console.log("FROM ACTION");
+    revalidatePath("/dashboard/actions");
+    return todo;
+  } catch {
+    return { message: "Error creating to-do" };
+  }
 }

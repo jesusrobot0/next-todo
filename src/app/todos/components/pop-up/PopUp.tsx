@@ -1,8 +1,7 @@
 import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
-import { useRouter } from "next/navigation";
-import { CirclePlus, CircleX } from "lucide-react";
+import { CirclePlus } from "lucide-react";
 import clsx from "clsx";
-import { createTodo } from "../../helpers";
+import { createTodo } from "../../actions/todo-actions";
 
 interface Props {
   isVisible: boolean;
@@ -16,7 +15,6 @@ const initialTodo = {
 
 export function PopUp({ isVisible, onTogglePopup }: Props) {
   const [todo, setTodo] = useState(initialTodo);
-  const router = useRouter();
 
   const handleModalClick = (e: MouseEvent) => {
     // Previene que el clic se propague al overlay
@@ -42,7 +40,7 @@ export function PopUp({ isVisible, onTogglePopup }: Props) {
       description: todo.description,
     });
 
-    router.refresh();
+    setTodo(initialTodo);
     onTogglePopup();
   };
 
