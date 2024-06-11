@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CirclePlus, Trash } from "lucide-react";
 import { PopUp } from "../pop-up/PopUp";
-import { deleteCompletedTodos } from "../../helpers";
+import { deleteAllCompletedTodos } from "../../actions/todo-actions";
 
 export function NewTodo() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,7 +15,7 @@ export function NewTodo() {
   };
 
   const handleDelete = async () => {
-    await deleteCompletedTodos();
+    await deleteAllCompletedTodos();
     router.refresh();
   };
 

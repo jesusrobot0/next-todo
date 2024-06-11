@@ -42,10 +42,18 @@ export async function createTodo({ title, description }: CreateTodoArgs) {
       },
     });
 
-    console.log("FROM ACTION");
     revalidatePath("/dashboard/actions");
     return todo;
   } catch {
     return { message: "Error creating to-do" };
+  }
+}
+
+export async function deleteAllCompletedTodos() {
+  try {
+    await prisma.todo.deleteMany({ where: { complete: true } });
+    revalidatePath("/dashboard/actions");
+  } catch (error) {
+    return { message: "Error deleting to-do" };
   }
 }
